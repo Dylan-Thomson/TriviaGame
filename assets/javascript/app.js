@@ -22,27 +22,30 @@ class TriviaQuestion {
     }
 }
 
-// TODO change to object
 class GameTimer {
     constructor(time) {
         this.time = time;
+        this.timeRemaining = time;
         this.intervalId;
     }
 
     startTimer() {
-        this.intervalId = setInterval(this.runTimer, 1000);
+        var self = this;
+        self.intervalId = setInterval(function() {
+            console.log(self.timeRemaining);
+            self.timeRemaining--;
+            if(self.timeRemaining < 0) {
+                self.stopTimer();
+            }
+        }, 1000);
     }
-
-    runTimer() {
-        console.log(GameTimer.time);
-        GameTimer.time--;
-        if(GameTimer.time <= 0) {
-            this.stopTimer();
-        }
-    }
-
+    
     stopTimer() {
         clearInterval(this.intervalId);
+    }
+
+    resetTimer() {
+        this.timeRemaining = this.time;
     }
 }
 
@@ -50,4 +53,19 @@ function test_isGuessCorrect() {
     var testQuestion = new TriviaQuestion("Is cheese good", ["Yes", "Maybe", "No"], 0, "");
     console.log(testQuestion.isGuessCorrect("Yes"));
     console.log(testQuestion.isGuessCorrect("No"));
+}
+
+function test_GameTimer() {
+    var timer = new GameTimer(10);
+    console.log("Starting timer");
+    timer.startTimer();
+    setTimeout(() => {
+        console.log("Pausing timer at " + timer.time);
+        timer.stopTimer();
+        setTimeout(() => {
+            console.log("Unpausing timer");
+            timer.startTimer();
+        }, 2000);
+    }, 2000);
+
 }
