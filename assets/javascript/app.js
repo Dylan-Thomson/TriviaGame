@@ -1,12 +1,3 @@
-/****************************************
-Question object
--String for question
--Array of possible answers
--Correct answer, maybe represented as index of array
--String for image
-    User clicks a choice, gets a string
-    if option.indexOf(choice) === indexOfAnswer
-*****************************************/
 class TriviaQuestion {
     // String, array, number, string
     constructor(question, answers, indexOfAnswer, imagePath) {
@@ -20,57 +11,53 @@ class TriviaQuestion {
         return this.answers.indexOf(guess) === this.indexOfAnswer;
     }
 }
-/****************************************
-Timer
--Time, time remaining, interval ID
--Start, stop, reset
-*****************************************/
-// class GameTimer {
-//     constructor(time) {
-//         this.time = time;
-//         this.timeRemaining = time;
-//         this.intervalId;
-//     }
 
-//     startTimer() {
-//         var self = this;
-//         self.intervalId = setInterval(function() {
-//             console.log(self.timeRemaining);
-//             self.timeRemaining--;
-//             if(self.timeRemaining < 0) {
-//                 self.stopTimer();
-//             }
-//         }, 1000);
-//     }
-    
-//     stopTimer() {
-//         clearInterval(this.intervalId);
-//     }
-
-//     resetTimer() {
-//         this.timeRemaining = this.time;
-//     }
-// }
-
-/****************************************
-TriviaGame
--Array of question objects
--Timer object
--Current question
--Correct and wrong answer count
-*****************************************/
 class TriviaGame {
     constructor(questions, time) {
         this.questions = questions;
         this.time = time;
         this.timeRemaining = time;
-        this.currentQuestion = this.questions.shift();
-        console.log(this.currentQuestion.question);
         this.correctAnswers = 0; 
         this.missedAnswers = 0;
         this.intervalId;
     }
 
+    // Begin the game by getting the first question and starting the timer
+    start() {
+        this.currentQuestion = this.questions.shift();
+        console.log(this.currentQuestion.question);
+        this.startTimer();
+    }
+
+    guess(guess) {
+        if(this.currentQuestion.answers.indexOf(guess) === this.currentQuestion.indexOfAnswer) {
+            this.stopTimer();
+            this.correctAnswers++;
+            console.log("Correct! The answer was " + this.currentQuestion.answers[this.currentQuestion.indexOfAnswer]);
+            setTimeout(() => {
+                if(this.nextQuestion()) {
+                    this.resetTimer();
+                    this.startTimer();
+                }
+            }, 5 * 1000);
+        }
+        else {
+            this.missedAnswer();
+        }
+    }
+
+    missedAnswer() {
+        this.stopTimer();
+        this.missedAnswers++;
+        console.log("Nope. The correct answer is: " + this.currentQuestion.answers[this.currentQuestion.indexOfAnswer]);
+        setTimeout(() => {
+            if(this.nextQuestion()) {
+                this.resetTimer();
+                this.startTimer();
+            }
+        }, 5 * 1000);
+    }
+    
     nextQuestion() {
         if(this.questions.length > 0) {
             this.currentQuestion = this.questions.shift();
@@ -107,18 +94,6 @@ class TriviaGame {
         this.timeRemaining = this.time;
     }
 
-    missedAnswer() {
-        this.stopTimer();
-        this.missedAnswers++;
-        console.log("Nope. The correct answer is: " + this.currentQuestion.answers[this.currentQuestion.indexOfAnswer]);
-        setTimeout(() => {
-            if(this.nextQuestion()) {
-                this.resetTimer();
-                this.startTimer();
-            }
-        }, 5 * 1000);
-    }
-
 }
 
 var game;
@@ -135,4 +110,5 @@ function init() {
 
 $(document).ready(function() {
     init();
+    game.start();
 });

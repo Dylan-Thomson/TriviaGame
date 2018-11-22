@@ -4,20 +4,13 @@ function test_isGuessCorrect() {
     console.log(testQuestion.isGuessCorrect("No"));
 }
 
-function test_GameTimer() {
-    var timer = new GameTimer(10);
-    console.log("Starting timer");
-    timer.startTimer();
-    setTimeout(() => {
-        console.log("Pausing timer at " + timer.timeRemaining);
-        timer.stopTimer();
-        setTimeout(() => {
-            console.log("Unpausing timer");
-            timer.startTimer();
-            setTimeout(() => {
-                console.log("Resetting timer at " + timer.timeRemaining);
-                timer.resetTimer();
-            }, 2000);
-        }, 2000);
-    }, 2000);
+function test_nextQuestion() {
+    var game;
+    var questions = [
+        new TriviaQuestion("Do you like cheese?", ["Yes", "Maybe", "No"], 0, "image"),
+        new TriviaQuestion("Do you like bread?", ["Yes", "Maybe", "No"], 1, "image"),
+        new TriviaQuestion("Do you like kale?", ["Yes", "Maybe", "No"], 2, "image"),
+    ];
+    game = new TriviaGame(questions, 3);
+    while(game.nextQuestion());
 }
