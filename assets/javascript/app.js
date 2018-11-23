@@ -63,6 +63,7 @@ class TriviaGame {
         if(this.questions.length > 0) {
             this.currentQuestion = this.questions.shift();
             console.log(this.currentQuestion.question);
+            this.clearPreviousQuestion();
             this.displayQuestion();
             return this.currentQuestion;
         }
@@ -90,6 +91,11 @@ class TriviaGame {
         // $("#option2").text(this.currentQuestion.answers[1]);
         // $("#option3").text(this.currentQuestion.answers[2]);
         // $("#option4").text(this.currentQuestion.answers[3]);
+    }
+
+    clearPreviousQuestion() {
+        $("#question").text("");
+        $("#options").empty();
     }
 
     startTimer() {
