@@ -26,6 +26,7 @@ class TriviaGame {
     start() {
         this.currentQuestion = this.questions.shift();
         console.log(this.currentQuestion.question);
+        this.displayQuestion();
         this.startTimer();
     }
 
@@ -62,6 +63,7 @@ class TriviaGame {
         if(this.questions.length > 0) {
             this.currentQuestion = this.questions.shift();
             console.log(this.currentQuestion.question);
+            this.displayQuestion();
             return this.currentQuestion;
         }
         else {
@@ -76,9 +78,24 @@ class TriviaGame {
         console.log("Missed answers", this.missedAnswers);
     }
 
+    displayQuestion() {
+        $("#question").text(this.currentQuestion.question);
+        this.currentQuestion.answers.forEach(function(answer) {
+            var li = $("<li>");
+            li.addClass("option");
+            li.text(answer);
+            $("#options").append(li);
+        });
+        // $("#option1").text(this.currentQuestion.answers[0]);
+        // $("#option2").text(this.currentQuestion.answers[1]);
+        // $("#option3").text(this.currentQuestion.answers[2]);
+        // $("#option4").text(this.currentQuestion.answers[3]);
+    }
+
     startTimer() {
         this.intervalId = setInterval(() => {
             console.log(this.timeRemaining);
+            $("#question-timer").text(this.timeRemaining);
             this.timeRemaining--;
             if(this.timeRemaining < 0) {
                 this.missedAnswer();
@@ -110,5 +127,5 @@ function init() {
 
 $(document).ready(function() {
     init();
-    game.start();
+    // game.start();
 });
