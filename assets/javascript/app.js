@@ -113,12 +113,15 @@ class TriviaGame {
         $("#options").empty();
     }
 
-    // TODO: Fix bug where timer starts at 0 or blank for next question, timer should start at timeRemaining or time
+    // TODO: figue out why decrementing time remaining before setinterval makes the clock work
     startTimer() {
-        $("#question-timer").text("Start!");
+        $("#question-timer").text(this.timeRemaining); 
+        console.log(this.timeRemaining);
+        this.timeRemaining--;
+        console.log(this.timeRemaining);
         this.intervalId = setInterval(() => {
             console.log(this.timeRemaining);
-            $("#question-timer").text(this.timeRemaining);
+            $("#question-timer").text(this.timeRemaining); 
             this.timeRemaining--;
             if(this.timeRemaining < 0) {
                 this.resolveAnswer();
