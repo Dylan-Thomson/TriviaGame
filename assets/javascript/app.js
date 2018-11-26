@@ -24,10 +24,8 @@ class TriviaGame {
 
     // Begin the game by getting the first question and starting the timer
     start() {
-        this.currentQuestion = this.questions.shift();
-        console.log(this.currentQuestion.question);
-        this.displayQuestion();
         this.startTimer();
+        this.nextQuestion();
     }
 
     guess(guess) {
@@ -43,22 +41,29 @@ class TriviaGame {
         if(correct) {
             this.correctAnswers++;
             console.log("Correct! The answer was " + this.currentQuestion.answers[this.currentQuestion.indexOfAnswer]);
+            $("#results").text("Correct! The answer was " + this.currentQuestion.answers[this.currentQuestion.indexOfAnswer]);
         }
         else {
             this.missedAnswer++;
             console.log("Nope. The correct answer is: " + this.currentQuestion.answers[this.currentQuestion.indexOfAnswer]);
+            $("#results").text("Nope. The correct answer is: " + this.currentQuestion.answers[this.currentQuestion.indexOfAnswer]);
         }
+
+        $("#results-container").show();
+        $("#question-container").hide();
         this.stopTimer();
         setTimeout(() => {
             if(this.nextQuestion()) {
                 this.resetTimer();
                 this.startTimer();
             }
-        }, 5 * 1000);
+        }, 3 * 1000);
     }
     
     nextQuestion() {
         if(this.questions.length > 0) {
+            $("#question-container").show();
+            $("#results-container").hide();
             this.currentQuestion = this.questions.shift();
             console.log(this.currentQuestion.question);
             this.clearPreviousQuestion();
@@ -70,8 +75,14 @@ class TriviaGame {
             return null;
         }
     }
-
+    
     gameOver() {
+        $("#question-container").hide();
+        $("#results-container").hide();
+        $("#game-over-container").show();
+        $("#restart-btn").show();
+        $("#correct-answers").text(this.correctAnswers);
+        $("#missed-answers").text(this.missedAnswers);
         console.log("Game Over!");
         console.log("Correct answers", this.correctAnswers);
         console.log("Missed answers", this.missedAnswers);
@@ -138,5 +149,12 @@ $(document).ready(function() {
     $("#start-btn").on("click", () => {
         game.start();
         $("#start-btn").hide();
+    });
+
+    $("#restart-btn").on("click", () => {
+        init();
+        $("#game-over-container").hide();
+        game.start();
+        $("#restart-btn").hide();
     });
 });
