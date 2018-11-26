@@ -81,11 +81,15 @@ class TriviaGame {
 
     displayQuestion() {
         $("#question").text(this.currentQuestion.question);
-        this.currentQuestion.answers.forEach(function(answer) {
+        this.currentQuestion.answers.forEach((answer) => {
             var li = $("<li>");
             li.addClass("option");
             li.text(answer);
             $("#options").append(li);
+            li.on("click", () => {
+                console.log(answer);
+                this.guess(answer);
+            });
         });
         // $("#option1").text(this.currentQuestion.answers[0]);
         // $("#option2").text(this.currentQuestion.answers[1]);
@@ -134,4 +138,6 @@ function init() {
 $(document).ready(function() {
     init();
     // game.start();
+
+    $("#start-btn").on("click", game.start());
 });
