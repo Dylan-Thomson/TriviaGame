@@ -7,7 +7,7 @@ function test_isGuessCorrect() {
 function test_nextQuestion() {
     var game;
     var questions = [
-        new TriviaQuestion("Do you like cheese?", ["Yes", "Maybe", "No"], 0, "image"),
+        new TriviaQuestion("Do you like cheese?", ["Yes", "Maybe", "No"], 0, "https://amp.businessinsider.com/images/5b8592ba89c8a1d6218b4a36-750-563.jpg"),
         new TriviaQuestion("Do you like bread?", ["Yes", "Maybe", "No"], 1, "image"),
         new TriviaQuestion("Do you like kale?", ["Yes", "Maybe", "No"], 2, "image"),
     ];

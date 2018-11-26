@@ -55,6 +55,7 @@ class TriviaGame {
             }
         }
 
+        $("#results-img").attr("src", this.currentQuestion.imagePath);
         $("#results-container").show();
         $("#question-container").hide();
         this.stopTimer();
@@ -143,9 +144,9 @@ var game;
 
 function init() {
     var questions = [
-        new TriviaQuestion("Do you like cheese?", ["Yes", "Maybe", "No"], 0, "image"),
-        new TriviaQuestion("Do you like bread?", ["Yes", "Maybe", "No"], 1, "image"),
-        new TriviaQuestion("Do you like kale?", ["Yes", "Maybe", "No"], 2, "image"),
+        new TriviaQuestion("Do you like cheese?", ["Yes", "Maybe", "No"], 0, "https://amp.businessinsider.com/images/5b8592ba89c8a1d6218b4a36-750-563.jpg"),
+        new TriviaQuestion("Do you like bread?", ["Yes", "Maybe", "No"], 1, "https://www.tasteofhome.com/wp-content/uploads/2018/01/exps32480_MRR153791D09_18_6b-2-696x696.jpg"),
+        new TriviaQuestion("Do you like kale?", ["Yes", "Maybe", "No"], 2, "https://i0.wp.com/www.healthline.com/hlcmsresource/images/AN_images/benefits-of-kale-1296x728-feature.jpg?w=1155&h=1528"),
     ];
     // var timer = new GameTimer(60);
     game = new TriviaGame(questions, 3);
