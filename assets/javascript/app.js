@@ -32,25 +32,23 @@ class TriviaGame {
 
     guess(guess) {
         if(this.currentQuestion.answers.indexOf(guess) === this.currentQuestion.indexOfAnswer) {
-            this.stopTimer();
-            this.correctAnswers++;
-            console.log("Correct! The answer was " + this.currentQuestion.answers[this.currentQuestion.indexOfAnswer]);
-            setTimeout(() => {
-                if(this.nextQuestion()) {
-                    this.resetTimer();
-                    this.startTimer();
-                }
-            }, 5 * 1000);
+            this.resolveAnswer(true);
         }
         else {
-            this.missedAnswer();
+            this.resolveAnswer(false);
         }
     }
-
-    missedAnswer() {
+    
+    resolveAnswer(correct) {
+        if(correct) {
+            this.correctAnswers++;
+            console.log("Correct! The answer was " + this.currentQuestion.answers[this.currentQuestion.indexOfAnswer]);
+        }
+        else {
+            this.missedAnswer++;
+            console.log("Nope. The correct answer is: " + this.currentQuestion.answers[this.currentQuestion.indexOfAnswer]);
+        }
         this.stopTimer();
-        this.missedAnswers++;
-        console.log("Nope. The correct answer is: " + this.currentQuestion.answers[this.currentQuestion.indexOfAnswer]);
         setTimeout(() => {
             if(this.nextQuestion()) {
                 this.resetTimer();
@@ -91,10 +89,6 @@ class TriviaGame {
                 this.guess(answer);
             });
         });
-        // $("#option1").text(this.currentQuestion.answers[0]);
-        // $("#option2").text(this.currentQuestion.answers[1]);
-        // $("#option3").text(this.currentQuestion.answers[2]);
-        // $("#option4").text(this.currentQuestion.answers[3]);
     }
 
     clearPreviousQuestion() {
@@ -102,13 +96,15 @@ class TriviaGame {
         $("#options").empty();
     }
 
+    // TODO: Fix bug where timer starts at 0 or blank for next question, timer should start at timeRemaining or time
     startTimer() {
+        $("#question-timer").text("Start!");
         this.intervalId = setInterval(() => {
             console.log(this.timeRemaining);
             $("#question-timer").text(this.timeRemaining);
             this.timeRemaining--;
             if(this.timeRemaining < 0) {
-                this.missedAnswer();
+                this.resolveAnswer(false);
             }
         }, 1000);
     }
@@ -139,5 +135,8 @@ $(document).ready(function() {
     init();
     // game.start();
 
-    $("#start-btn").on("click", game.start());
+    $("#start-btn").on("click", () => {
+        game.start();
+        $("#start-btn").hide();
+    });
 });
