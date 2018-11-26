@@ -45,8 +45,14 @@ class TriviaGame {
         }
         else {
             this.missedAnswer++;
-            console.log("Nope. The correct answer is: " + this.currentQuestion.answers[this.currentQuestion.indexOfAnswer]);
-            $("#results").text("Nope. The correct answer is: " + this.currentQuestion.answers[this.currentQuestion.indexOfAnswer]);
+            if(correct === undefined) {
+                console.log("You ran out of time. The correct answer is: " + this.currentQuestion.answers[this.currentQuestion.indexOfAnswer]);
+                $("#results").text("You ran out of time. The correct answer is: " + this.currentQuestion.answers[this.currentQuestion.indexOfAnswer]);
+            }
+            else {
+                console.log("Nope. The correct answer is: " + this.currentQuestion.answers[this.currentQuestion.indexOfAnswer]);
+                $("#results").text("Nope. The correct answer is: " + this.currentQuestion.answers[this.currentQuestion.indexOfAnswer]);
+            }
         }
 
         $("#results-container").show();
@@ -115,7 +121,7 @@ class TriviaGame {
             $("#question-timer").text(this.timeRemaining);
             this.timeRemaining--;
             if(this.timeRemaining < 0) {
-                this.resolveAnswer(false);
+                this.resolveAnswer();
             }
         }, 1000);
     }
