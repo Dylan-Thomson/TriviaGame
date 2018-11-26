@@ -17,8 +17,8 @@
 <body>
     <div class="container">
         <h1>Trivia Game</h1>
+        <div>Time remaining: <span id="question-timer"></span></div>
         <div id="question-container">
-            <div>Time remaining: <span id="question-timer"></span></div>
             <div id="question"></div>
             <ul class="list-unstyled" id="options">
             </ul>
@@ -30,7 +30,8 @@
         <div id="game-over-container">
             <div>Game Over!</div>
             <div>Correct answers: <span id="correct-answers"></span></div>
-            <div>Missed answers: <span id="missed-answers"></span></div>
+            <div>Incorrect answers: <span id="incorrect-answers"></span></div>
+            <div>Unanswered: <span id="unanswered"></span></div>
         </div>
         <button class="btn btn-primary" id="start-btn">Start Game</button>
         <button class="btn btn-primary" id="restart-btn">Start Over</button>

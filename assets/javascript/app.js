@@ -18,7 +18,8 @@ class TriviaGame {
         this.time = time;
         this.timeRemaining = time;
         this.correctAnswers = 0; 
-        this.missedAnswers = 0;
+        this.incorrectAnswers = 0;
+        this.unanswered = 0;
         this.intervalId;
     }
 
@@ -42,18 +43,18 @@ class TriviaGame {
             this.correctAnswers++;
             console.log("Correct! The answer was " + this.currentQuestion.answers[this.currentQuestion.indexOfAnswer]);
             $("#results").text("Correct! The answer was " + this.currentQuestion.answers[this.currentQuestion.indexOfAnswer]);
+        } 
+        else if(correct === undefined) {
+            this.unanswered++;
+            console.log("You ran out of time. The correct answer is: " + this.currentQuestion.answers[this.currentQuestion.indexOfAnswer]);
+            $("#results").text("You ran out of time. The correct answer is: " + this.currentQuestion.answers[this.currentQuestion.indexOfAnswer]);
         }
         else {
-            this.missedAnswer++;
-            if(correct === undefined) {
-                console.log("You ran out of time. The correct answer is: " + this.currentQuestion.answers[this.currentQuestion.indexOfAnswer]);
-                $("#results").text("You ran out of time. The correct answer is: " + this.currentQuestion.answers[this.currentQuestion.indexOfAnswer]);
-            }
-            else {
-                console.log("Nope. The correct answer is: " + this.currentQuestion.answers[this.currentQuestion.indexOfAnswer]);
-                $("#results").text("Nope. The correct answer is: " + this.currentQuestion.answers[this.currentQuestion.indexOfAnswer]);
-            }
+            this.incorrectAnswers++;
+            console.log("Nope. The correct answer is: " + this.currentQuestion.answers[this.currentQuestion.indexOfAnswer]);
+            $("#results").text("Nope. The correct answer is: " + this.currentQuestion.answers[this.currentQuestion.indexOfAnswer]);
         }
+    
 
         $("#results-img").attr("src", this.currentQuestion.imagePath);
         $("#results-container").show();
@@ -89,10 +90,12 @@ class TriviaGame {
         $("#game-over-container").show();
         $("#restart-btn").show();
         $("#correct-answers").text(this.correctAnswers);
-        $("#missed-answers").text(this.missedAnswers);
+        $("#incorrect-answers").text(this.incorrectAnswers);
+        $("#unanswered").text(this.unanswered);
         console.log("Game Over!");
         console.log("Correct answers", this.correctAnswers);
-        console.log("Missed answers", this.missedAnswers);
+        console.log("Incorrect answers", this.incorrectAnswers);
+        console.log("Unanswered", this.unanswered);
     }
 
     displayQuestion() {
