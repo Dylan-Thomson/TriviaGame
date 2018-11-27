@@ -1,3 +1,22 @@
-#game-over-container, #question-container, #results-container, #restart-btn {
+#game-over-container, #question-container, #results-container, #restart-btn, #game-container {
     display: none;
 }
+
+#results-img {
+    max-width: 80%;
+}
+
+.vertical-center {
+    min-height: 100%;  
+    min-height: 100vh;
+  
+    display: flex;
+    align-items: center;
+  }
+
+  .container {
+      /* min-height: 80vh; */
+      /* display: flex;
+      justify-content: center;
+      flex-direction: column; */
+  }

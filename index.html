@@ -14,24 +14,26 @@
         <script src="assets/javascript/app.js"></script>
         <script src="assets/javascript/tests.js"></script>
 </head>
-<body>
-    <div class="container">
+<body class="">
+    <div class="container text-center">
         <h1>Trivia Game</h1>
-        <div>Time remaining: <span id="question-timer"></span></div>
-        <div id="question-container">
-            <div id="question"></div>
-            <ul class="list-unstyled" id="options">
-            </ul>
-        </div>
-        <div id="results-container">
-            <div id="results"></div>
-            <img id="results-img" src="" alt="">
-        </div>
-        <div id="game-over-container">
-            <div>Game Over!</div>
-            <div>Correct answers: <span id="correct-answers"></span></div>
-            <div>Incorrect answers: <span id="incorrect-answers"></span></div>
-            <div>Unanswered: <span id="unanswered"></span></div>
+        <div id="game-container">
+            <div>Time remaining: <span id="question-timer"></span></div>
+            <div id="question-container">
+                <div id="question"></div>
+                <ul class="list-unstyled" id="options">
+                </ul>
+            </div>
+            <div id="results-container">
+                <div id="results"></div>
+                <img id="results-img" src="" alt="">
+            </div>
+            <div id="game-over-container">
+                <div>Game Over!</div>
+                <div>Correct answers: <span id="correct-answers"></span></div>
+                <div>Incorrect answers: <span id="incorrect-answers"></span></div>
+                <div>Unanswered: <span id="unanswered"></span></div>
+            </div>
         </div>
         <button class="btn btn-primary" id="start-btn">Start Game</button>
         <button class="btn btn-primary" id="restart-btn">Start Over</button>

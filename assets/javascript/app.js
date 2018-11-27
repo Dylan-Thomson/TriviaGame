@@ -47,12 +47,12 @@ class TriviaGame {
         else if(correct === undefined) {
             this.unanswered++;
             console.log("You ran out of time. The correct answer is: " + this.currentQuestion.answers[this.currentQuestion.indexOfAnswer]);
-            $("#results").text("You ran out of time. The correct answer is: " + this.currentQuestion.answers[this.currentQuestion.indexOfAnswer]);
+            $("#results").text("You ran out of time. The correct answer wass: " + this.currentQuestion.answers[this.currentQuestion.indexOfAnswer]);
         }
         else {
             this.incorrectAnswers++;
-            console.log("Nope. The correct answer is: " + this.currentQuestion.answers[this.currentQuestion.indexOfAnswer]);
-            $("#results").text("Nope. The correct answer is: " + this.currentQuestion.answers[this.currentQuestion.indexOfAnswer]);
+            console.log("Nope. The correct answer was: " + this.currentQuestion.answers[this.currentQuestion.indexOfAnswer]);
+            $("#results").text("Nope. The correct answer was: " + this.currentQuestion.answers[this.currentQuestion.indexOfAnswer]);
         }
     
 
@@ -150,7 +150,7 @@ function init() {
         new TriviaQuestion("Pam Beesly received a lifetime ban from which of the following restaurants?", 
                           ["Applebee's", "Chili's", "Chipotle", "McDonald's"], 
                           1, 
-                          "https://media.giphy.com/media/yoJC2oCKxTLNrr30Jy/giphy.gif"),
+                          "https://media.giphy.com/media/b2RyjBa096Y6Y/giphy.gif"),
         new TriviaQuestion("Michael Scott organized a charity race to raise funds in order to cure which of the following diseases?", 
                           ["Polio", "Affluenza", "Tourette's Syndrome", "Rabies"], 
                           3, 
@@ -194,6 +194,7 @@ $(document).ready(function() {
     $("#start-btn").on("click", () => {
         game.start();
         $("#start-btn").hide();
+        $("#game-container").show();
     });
 
     $("#restart-btn").on("click", () => {
