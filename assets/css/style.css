@@ -6,17 +6,11 @@
     max-width: 80%;
 }
 
-.vertical-center {
-    min-height: 100%;  
+html, body {
     min-height: 100vh;
-  
-    display: flex;
-    align-items: center;
-  }
+}
 
-  .container {
-      /* min-height: 80vh; */
-      /* display: flex;
-      justify-content: center;
-      flex-direction: column; */
-  }
+.container {
+    min-height: 80vh;
+    /* background: green; */
+}
