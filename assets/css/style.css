@@ -1,9 +1,14 @@
-body {
-    background: url("../images/paper_2.png");
+html, body {
+    min-height: 100vh;
 }
 
-#game-over-container, #question-container, #results-container, #restart-btn, #game-container {
-    display: none;
+body {
+    background: url("../images/paper_2.png");
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+h1 {
+    font-family: 'Archivo Black', sans-serif;
 }
 
 #results-img {
@@ -11,29 +16,73 @@ body {
     max-height: 40%;
 }
 
-html, body {
-    min-height: 100vh;
+#game-over-container, #question-container, #results-container, #restart-btn, #game-container {
+    display: none;
 }
 
-.container {
-    min-height: 30em;
-    background:  #1f3a86;
+#title-container div {
+    font-weight: 600;
+}
+
+#question, #results-container, #game-over-container, #timer-div {
+    font-size: 1.25em;
+    font-weight: 600;
+}
+
+/**************************************************** 
+    Buttons
+****************************************************/
+.game-btn {
+    background: #1f3a86;
     color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 600;
 }
 
-.option {
-    /* width: 25%; */
-    background: white;
-    color: black;
-    margin: 1em auto;
-    max-width: 20em;
-    padding: 5px;
+.game-btn:hover {
+    background: #122250;
 }
 
 button {
     margin: auto;
 }
 
-#question, #results {
-    font-size: 1.25em;
+/**************************************************** 
+    Option class
+****************************************************/
+.option {
+    background: #1f3a86;
+    color: white;
+    font-family: 'Archivo Black', sans-serif;
+    margin: 1em auto;
+    max-width: 20em;
+    padding: 5px;
+}
+
+.option:hover {
+    color: #1f3a86;
+    background: white;
+    cursor: pointer;
+}
+
+/**************************************************** 
+    Link
+****************************************************/
+a {
+    color: #1f3a86;
+    font-weight: 600;
+    font-family: 'Archivo Black', sans-serif;
+}
+
+a:hover {
+    color: #122250;
+}
+
+/**************************************************** 
+    Media queries
+****************************************************/
+@media only screen and (max-width: 425px) {
+    h1 {
+        font-size: 1.25em;
+    }
 }

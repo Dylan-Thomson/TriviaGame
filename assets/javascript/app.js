@@ -1,5 +1,5 @@
 class TriviaQuestion {
-    // String, array, number, string
+    // new TriviaQuestion(string, array, number, string)
     constructor(question, answers, indexOfAnswer, imagePath) {
         this.question = question;
         this.answers = answers;
@@ -13,6 +13,7 @@ class TriviaQuestion {
 }
 
 class TriviaGame {
+    // new TriviaGame(array, number)
     constructor(questions, time) {
         this.questions = questions;
         this.time = time;
@@ -30,15 +31,10 @@ class TriviaGame {
     }
 
     guess(guess) {
-        if(this.currentQuestion.answers.indexOf(guess) === this.currentQuestion.indexOfAnswer) {
-            this.resolveAnswer(true);
-        }
-        else {
-            this.resolveAnswer(false);
-        }
+        this.resolveQuestion(this.currentQuestion.isGuessCorrect(guess));
     }
     
-    resolveAnswer(correct) {
+    resolveQuestion(correct) {
         if(correct) {
             this.correctAnswers++;
             console.log("Correct! The answer was " + this.currentQuestion.answers[this.currentQuestion.indexOfAnswer]);
@@ -47,7 +43,7 @@ class TriviaGame {
         else if(correct === undefined) {
             this.unanswered++;
             console.log("You ran out of time. The correct answer is: " + this.currentQuestion.answers[this.currentQuestion.indexOfAnswer]);
-            $("#results").text("You ran out of time. The correct answer wass: " + this.currentQuestion.answers[this.currentQuestion.indexOfAnswer]);
+            $("#results").text("You ran out of time. The correct answer was: " + this.currentQuestion.answers[this.currentQuestion.indexOfAnswer]);
         }
         else {
             this.incorrectAnswers++;
@@ -73,7 +69,6 @@ class TriviaGame {
             $("#question-container").show();
             $("#results-container").hide();
             this.currentQuestion = this.questions.shift();
-            console.log(this.currentQuestion.question);
             this.clearPreviousQuestion();
             this.displayQuestion();
             return this.currentQuestion;
@@ -117,18 +112,16 @@ class TriviaGame {
         $("#options").empty();
     }
 
-    // TODO: figue out why decrementing time remaining before setinterval makes the clock work
     startTimer() {
         $("#question-timer").text(this.timeRemaining); 
         console.log(this.timeRemaining);
         this.timeRemaining--;
-        console.log(this.timeRemaining);
         this.intervalId = setInterval(() => {
             console.log(this.timeRemaining);
             $("#question-timer").text(this.timeRemaining); 
             this.timeRemaining--;
             if(this.timeRemaining < 0) {
-                this.resolveAnswer();
+                this.resolveQuestion();
             }
         }, 1000);
     }
@@ -152,7 +145,7 @@ function init() {
                           1, 
                           "https://media.giphy.com/media/b2RyjBa096Y6Y/giphy.gif"),
         new TriviaQuestion("Michael Scott organized a charity race to raise funds in order to cure which of the following diseases?", 
-                          ["Polio", "Affluenza", "Tourette's Syndrome", "Rabies"], 
+                          ["Lumbago", "Affluenza", "Tourette's Syndrome", "Rabies"], 
                           3, 
                           "https://media.giphy.com/media/p5tWDtmnHZyY8/giphy.gif"),
         new TriviaQuestion("Kevin Malone is the lead singer and drummer of which local band?", 
@@ -185,7 +178,7 @@ function init() {
                           "https://media.giphy.com/media/ibULBaRu6iq1a/giphy.gif")
     ];
 
-    game = new TriviaGame(questions, 10000);
+    game = new TriviaGame(questions, 15);
 }
 
 $(document).ready(function() {
