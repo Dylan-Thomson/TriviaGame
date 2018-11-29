@@ -37,17 +37,14 @@ class TriviaGame {
     resolveQuestion(correct) {
         if(correct) {
             this.correctAnswers++;
-            console.log("Correct! The answer was: " + this.currentQuestion.answers[this.currentQuestion.indexOfAnswer]);
             $("#results").text("Correct! The answer was: " + this.currentQuestion.answers[this.currentQuestion.indexOfAnswer]);
         } 
         else if(correct === undefined) {
             this.unanswered++;
-            console.log("You ran out of time. The answer is: " + this.currentQuestion.answers[this.currentQuestion.indexOfAnswer]);
             $("#results").text("You ran out of time. The answer was: " + this.currentQuestion.answers[this.currentQuestion.indexOfAnswer]);
         }
         else {
             this.incorrectAnswers++;
-            console.log("Nope. The answer was: " + this.currentQuestion.answers[this.currentQuestion.indexOfAnswer]);
             $("#results").text("Nope. The answer was: " + this.currentQuestion.answers[this.currentQuestion.indexOfAnswer]);
         }
     
@@ -87,10 +84,6 @@ class TriviaGame {
         $("#correct-answers").text(this.correctAnswers);
         $("#incorrect-answers").text(this.incorrectAnswers);
         $("#unanswered").text(this.unanswered);
-        console.log("Game Over!");
-        console.log("Correct answers", this.correctAnswers);
-        console.log("Incorrect answers", this.incorrectAnswers);
-        console.log("Unanswered", this.unanswered);
     }
 
     displayQuestion() {
@@ -101,7 +94,6 @@ class TriviaGame {
             li.text(answer);
             $("#options").append(li);
             li.on("click", () => {
-                console.log(answer);
                 this.guess(answer);
             });
         });
@@ -114,10 +106,8 @@ class TriviaGame {
 
     startTimer() {
         $("#question-timer").text(this.timeRemaining); 
-        console.log(this.timeRemaining);
         this.timeRemaining--;
         this.intervalId = setInterval(() => {
-            console.log(this.timeRemaining);
             $("#question-timer").text(this.timeRemaining); 
             this.timeRemaining--;
             if(this.timeRemaining < 0) {
