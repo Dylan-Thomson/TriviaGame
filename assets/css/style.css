@@ -7,13 +7,12 @@ body {
     font-family: Arial, Helvetica, sans-serif;
 }
 
-h1 {
+h1, #game-over {
     font-family: 'Archivo Black', sans-serif;
 }
 
 #results-img {
     max-width: 80%;
-    max-height: 40%;
 }
 
 #game-over-container, #question-container, #results-container, #restart-btn, #game-container {
@@ -28,6 +27,7 @@ h1 {
     font-size: 1.25em;
     font-weight: 600;
 }
+
 
 /**************************************************** 
     Buttons

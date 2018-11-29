@@ -37,18 +37,18 @@ class TriviaGame {
     resolveQuestion(correct) {
         if(correct) {
             this.correctAnswers++;
-            console.log("Correct! The answer was " + this.currentQuestion.answers[this.currentQuestion.indexOfAnswer]);
-            $("#results").text("Correct! The answer was " + this.currentQuestion.answers[this.currentQuestion.indexOfAnswer]);
+            console.log("Correct! The answer was: " + this.currentQuestion.answers[this.currentQuestion.indexOfAnswer]);
+            $("#results").text("Correct! The answer was: " + this.currentQuestion.answers[this.currentQuestion.indexOfAnswer]);
         } 
         else if(correct === undefined) {
             this.unanswered++;
-            console.log("You ran out of time. The correct answer is: " + this.currentQuestion.answers[this.currentQuestion.indexOfAnswer]);
-            $("#results").text("You ran out of time. The correct answer was: " + this.currentQuestion.answers[this.currentQuestion.indexOfAnswer]);
+            console.log("You ran out of time. The answer is: " + this.currentQuestion.answers[this.currentQuestion.indexOfAnswer]);
+            $("#results").text("You ran out of time. The answer was: " + this.currentQuestion.answers[this.currentQuestion.indexOfAnswer]);
         }
         else {
             this.incorrectAnswers++;
-            console.log("Nope. The correct answer was: " + this.currentQuestion.answers[this.currentQuestion.indexOfAnswer]);
-            $("#results").text("Nope. The correct answer was: " + this.currentQuestion.answers[this.currentQuestion.indexOfAnswer]);
+            console.log("Nope. The answer was: " + this.currentQuestion.answers[this.currentQuestion.indexOfAnswer]);
+            $("#results").text("Nope. The answer was: " + this.currentQuestion.answers[this.currentQuestion.indexOfAnswer]);
         }
     
 
