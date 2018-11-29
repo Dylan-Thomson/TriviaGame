@@ -1,7 +1,7 @@
 # TriviaGame
 Player answers a series of timed "The Office" themed trivia questions and is given a score at the end of the game. In between questions, the game displays the correct answer and an image for a few seconds.
 
-This project was created as a homework assignment for the Case Western Web Development Bootcamp.
+This project was created as a homework assignment for the Case Western Web Development Bootcamp. It was built using HTML, CSS, JavaScript, Bootstrap, and jQuery.
 
 ## TriviaQuestion class
 This class represents our trivia questions. A question is created by calling the constructor `new TriviaQuestion(question, answers, indexOfAnswer, imagePath)`.
@@ -12,7 +12,7 @@ The `answers` paramater is an array containing Strings that represent the possib
 
 `indexOfAnswer` is a number matching the index of the correct answer to the question.
 
-`imagePath` is a String containing the path to the image that is displayed after the question is answered or the user runs out of time.
+`correctImage` and `wrongImage` are Strings containing the path to the image that is displayed after the question is answered or the user runs out of time.
 
 The class contains only one method `isGuessCorrect(guess)`. This function gets the index of `guess` in `answers` and sees if it matches `indexOfAnswer`.
 
