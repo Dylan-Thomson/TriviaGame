@@ -1,9 +1,14 @@
+body {
+    background: url("../images/paper_2.png");
+}
+
 #game-over-container, #question-container, #results-container, #restart-btn, #game-container {
     display: none;
 }
 
 #results-img {
     max-width: 80%;
+    max-height: 40%;
 }
 
 html, body {
@@ -11,6 +16,24 @@ html, body {
 }
 
 .container {
-    min-height: 80vh;
-    /* background: green; */
+    min-height: 30em;
+    background:  #1f3a86;
+    color: white;
+}
+
+.option {
+    /* width: 25%; */
+    background: white;
+    color: black;
+    margin: 1em auto;
+    max-width: 20em;
+    padding: 5px;
+}
+
+button {
+    margin: auto;
+}
+
+#question, #results {
+    font-size: 1.25em;
 }

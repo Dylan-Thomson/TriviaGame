@@ -185,7 +185,7 @@ function init() {
                           "https://media.giphy.com/media/ibULBaRu6iq1a/giphy.gif")
     ];
 
-    game = new TriviaGame(questions, 10);
+    game = new TriviaGame(questions, 10000);
 }
 
 $(document).ready(function() {
@@ -193,7 +193,7 @@ $(document).ready(function() {
 
     $("#start-btn").on("click", () => {
         game.start();
-        $("#start-btn").hide();
+        $("#title-container").hide();
         $("#game-container").show();
     });
 

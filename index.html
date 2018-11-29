@@ -15,28 +15,30 @@
         <script src="assets/javascript/tests.js"></script>
 </head>
 <body class="d-flex flex-column justify-content-center">
-    <div class="container text-center">
-        <h1 class="m-3">Trivia Game</h1>
+    <div class="container text-center d-flex flex-column justify-content-center">
+        <div id="title-container">
+            <h1 class="">Dunder Mifflin Trivia</h1>
+            <button class="btn btn-primary mt-5" id="start-btn">Start Game</button>
+        </div>
         <div id="game-container">
-            <div>Time remaining: <span id="question-timer"></span></div>
             <div id="question-container">
                 <div id="question"></div>
-                <ul class="list-unstyled" id="options">
+                <ul class="list-unstyled mt-3" id="options">
                 </ul>
+                <div class="mt-3">Time remaining: <span id="question-timer"></span></div>
             </div>
             <div id="results-container">
-                <div id="results"></div>
-                <img id="results-img" src="" alt="">
+                <div class="" id="results"></div>
+                <img class="mt-3" id="results-img" src="" alt="">
             </div>
             <div id="game-over-container">
                 <div>Game Over!</div>
-                <div>Correct answers: <span id="correct-answers"></span></div>
-                <div>Incorrect answers: <span id="incorrect-answers"></span></div>
-                <div>Unanswered: <span id="unanswered"></span></div>
+                <div class="mt-3">Correct answers: <span id="correct-answers"></span></div>
+                <div class="mt-3">Incorrect answers: <span id="incorrect-answers"></span></div>
+                <div class="mt-3">Unanswered: <span id="unanswered"></span></div>
+                <button class="btn btn-primary mt-3" id="restart-btn">Start Over</button>
             </div>
         </div>
-        <button class="btn btn-primary" id="start-btn">Start Game</button>
-        <button class="btn btn-primary" id="restart-btn">Start Over</button>
     </div>
 </body>
 </html>
